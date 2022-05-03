@@ -3,7 +3,9 @@
     <Navigation></Navigation>
     <div v-if="!loading">
       <div v-for="pokemon in $store.state.pokemons" :key="pokemon.name">
-        <PokemonCard class="mx-2" :pokemon="pokemon"></PokemonCard>
+        <NuxtLink to="/" class="m-0 p-0">
+          <PokemonCard class="mx-2" :pokemon="pokemon"></PokemonCard>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -20,7 +22,6 @@ export default {
   created() {
     this.$store.dispatch('getAllPokemon').then(() => {
       this.loading = false
-      console.log(this.$store.state.pokemons)
     })
   },
 

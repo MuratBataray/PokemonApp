@@ -1,7 +1,8 @@
 export const state = () => ({
     pokemons: {},
-    favoritePokemons: {},
+    favoritePokemons: [],
     pokemon: {},
+    team: [],
     selectedPokemon: {
         "abilities": [{
                 "ability": {
@@ -11357,16 +11358,21 @@ export const state = () => ({
         ],
         "weight": 69
     },
+    inFavorite: false,
+    favoriteCount: 0,
+    teamCount: 0
 })
 export const mutations = {
     initPokemon(state, allPokemon) {
         state.pokemons = allPokemon
     },
     addToFavorite(state, pokemon) {
-        state.favoritePokemons[pokemon.id] = pokemon
+        state.favoritePokemons.push(pokemon)
     },
     removeFromFavorite(state, pokemon) {
-        delete state.favoritePokemons[pokemon.id]
+        state.favoritePokemons = state.favoritePokemons.filter(function(item) {
+            return item !== pokemon
+        })
     },
     initPokemonDetail(state, pokemon) {
         state.pokemon = pokemon
@@ -11374,18 +11380,56 @@ export const mutations = {
     selectPokemon(state, pokemon) {
         state.selectedPokemon = pokemon
     },
+    addToTeam(state, pokemon) {
+        state.team.push(pokemon)
+    },
+    removeFromTeam(state, pokemon) {
+        state.team = state.team.filter(function(item) {
+            return item.name !== pokemon.name
+        })
+    },
+    inFavorite(state, bool) {
+        state.inFavorite = bool
+    },
+    favoriteCount(state, count) {
+        state.favoriteCount = count
+    },
+    teamCount(state, count) {
+        state.teamCount = count
+    },
+
 }
 export const actions = {
     async getAllPokemon({ commit }) {
-        const data = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon')
-        commit('initPokemon', data.results)
+        const data = await this.$axios.$get('https://stoplight.io/mocks/appwise-be/pokemon/32428517/pokemon')
+        commit('initPokemon', data)
     },
-    async selectPokemon({ commit }, pokemon) {
-        const data = pokemon
-        commit('selectPokemon', data)
+    selectPokemon({ commit }, pokemon) {
+        commit('selectPokemon', pokemon)
     },
-    async getDetails({ commit }, url) {
-        const data = await this.$axios.$get(url)
+    inFavorite({ commit }, bool) {
+        commit('inFavorite', bool)
+    },
+    async getDetails({ commit }, id) {
+        const data = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon/' + id)
         commit('initPokemonDetail', data)
+    },
+    addPokemonToTeam({ commit }, pokemon) {
+        commit('addToTeam', pokemon)
+    },
+    removePokemonFromTeam({ commit }, pokemon) {
+        commit('removeFromTeam', pokemon)
+    },
+    addPokemonToFavs({ commit }, pokemon) {
+        commit('addToFavorite', pokemon)
+    },
+    removePokemonFromFavs({ commit }, pokemon) {
+        commit('removeFromFavorite', pokemon)
+    },
+    favoriteCount({ commit }, count) {
+        commit('favoriteCount', count)
+    },
+    teamCount({ commit }, count) {
+        commit('teamCount', count)
     }
 }

@@ -1,12 +1,12 @@
 <template>
-    <div class="pokemonCard row" v-on:click="selectedPokemon" v-if="!loading">
-        <div class="col-sm-2 p-0 float-right"><img :src="detailedPokemon.sprites.other['official-artwork'].front_default" :alt="detailedPokemon.name"></div>
+    <div class="pokemonCard row" v-on:click="selectedPokemon">
+        <div class="col-sm-2 p-0 float-right"><img :src="pokemon.sprites.front_default" :alt="pokemon.name"></div>
         <div class="col-sm-4">
-            <p style="font-weight: bold;" class="mb-0">{{detailedPokemon.name}}</p>
-            <p class="mb-0">Nr. {{detailedPokemon.id}}</p>
+            <p style="font-weight: bold;" class="mb-0">{{pokemon.name}}</p>
+            <p class="mb-0">Nr. {{pokemon.id}}</p>
         </div>
         <div class="col-sm-5" style="display: inline-flex; justify-content: flex-end;">
-            <div class="m-0 float-right" v-for="type in detailedPokemon.types" :key="detailedPokemon.name + type.type.name">
+            <div class="m-0 float-right" v-for="type in pokemon.types" :key="pokemon.name + type.type.name">
                 <p class="type" :id="type.type.name">{{type.type.name}}</p>
             </div>
         </div>
@@ -20,20 +20,22 @@
 export default {
     name: "PokemonCard",
     props: ['pokemon'],
-    data() {
-        return {
-            loading: true,
-            detailedPokemon: {}
-        }
-    },
     methods: {
         selectedPokemon() {
             this.$store.dispatch('selectPokemon', this.detailedPokemon)
+            if (this.$store.state.favoritePokemons !== undefined) {
+                if (this.$store.state.favoritePokemons.some(e => e.name === this.detailedPokemon.name)) {
+                    this.$store.dispatch('inFavorite', true)
+                } else {
+                    this.$store.dispatch('inFavorite', false)
+                }
+            } else {
+                this.$store.dispatch('inFavorite', false)
+            }
         }
     },
     created() {
-        this.$store.dispatch('getDetails', this.pokemon.url).then(() => {
-            this.loading = false
+        this.$store.dispatch('getDetails', this.pokemon.id).then(() => {
             this.detailedPokemon = this.$store.state.pokemon
         })
     }
@@ -116,5 +118,14 @@ export default {
 }
 #bug {
     background-color: #6d9036;
+}
+#fairy {
+    background-color: #F8D4F3;
+}
+#dragon {
+    background-color: #8B4513;
+}
+#steel {
+    background-color: #303030;
 }
 </style>

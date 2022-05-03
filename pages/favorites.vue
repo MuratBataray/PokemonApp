@@ -1,6 +1,6 @@
 <template>
-  <div class="Favorites">
-      <h2>Favorites</h2>
+  <div class="col-lg-8">
+      <FavoritesCard></FavoritesCard>
   </div>
 </template>
 

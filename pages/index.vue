@@ -1,10 +1,6 @@
 <template>
-  <div class="app">
-    <div class="row">
-      <LeftPane class="col-sm-4"></LeftPane>
-      <PokemonDetail class="col-sm-8"></PokemonDetail>
-      <Nuxt/>
-    </div>
+  <div class="col-sm-8">
+      <PokemonDetail></PokemonDetail>
   </div>
 </template>
 

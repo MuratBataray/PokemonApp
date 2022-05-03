@@ -1,6 +1,6 @@
 <template>
-    <div class="Team">
-        <h2>Team</h2>
+    <div class="col-lg-8">
+      <TeamCard></TeamCard>
     </div>
 </template>
 
