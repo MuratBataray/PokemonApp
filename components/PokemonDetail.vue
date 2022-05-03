@@ -1,17 +1,35 @@
 <template>
-  <div class="PokemonDetail" :id="$store.state.selectedPokemon.types[0].type.name">
-      <div class="float-right">
-        <font-awesome-icon v-if="!this.$store.state.inFavorite" v-on:click="addToFavorite" :icon="['far', 'fa-heart']" size="lg"/>
-        <font-awesome-icon v-if="this.$store.state.inFavorite" v-on:click="removeFromFavorite" :icon="['fa', 'fa-heart']" size="lg"/>
-      </div>
-      <h2>{{$store.state.selectedPokemon.name}}</h2>
-      <div v-if="$store.state.team.includes($store.state.selectedPokemon)">
-          <a v-on:click="removeFromTeam" class="addTeam btn btn-dark">Remove from Team</a>
-    </div>
-    <div v-else>
-        <a v-on:click="addToTeam" class="addTeam btn btn-dark">Add to Team</a>
+    <div class="PokemonDetail" :id="$store.state.selectedPokemon.types[0].type.name">
+        <div id="favoriteButton" class="float-right">
+            <font-awesome-icon v-if="!this.$store.state.inFavorite" v-on:click="addToFavorite" :icon="['far', 'fa-heart']" size="lg"/>
+            <font-awesome-icon v-if="this.$store.state.inFavorite" v-on:click="removeFromFavorite" :icon="['fa', 'fa-heart']" size="lg"/>
         </div>
-  </div>
+        <h2>{{$store.state.selectedPokemon.name}}</h2>
+        <div class="row mx-2">
+            <div class="col-lg-5">
+                <!--<img width="250px" :src="$store.state.selectedPokemon.sprites.other['official-artwork'].front_default" alt="">-->
+                <ImageCarousel class="mb-3" :sprites="$store.state.selectedPokemon.sprites"></ImageCarousel>
+                <PokemonInfo :pokemon="$store.state.selectedPokemon"></PokemonInfo>
+            </div>
+            <div class="col-lg-7">
+                <PokemonStats :pokemon="$store.state.selectedPokemon"></PokemonStats>
+                <div class="stats">
+                    <h3>moveset</h3>
+                </div>
+                <div class="stats">
+                    <h3>evolutie</h3>
+                </div>
+            </div>
+        </div>
+        <div id="teamButton">
+            <div v-if="$store.state.team.includes($store.state.selectedPokemon)">
+                <a v-on:click="removeFromTeam" class="addTeam btn btn-dark">Remove from Team</a>
+            </div>
+            <div v-else>
+                <a v-on:click="addToTeam" class="addTeam btn btn-dark">Add to Team</a>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -40,7 +58,6 @@ export default {
         removeFromTeam() {
             this.$store.dispatch('removePokemonFromTeam', this.$store.state.selectedPokemon)
             this.$store.dispatch('teamCount',(Object.keys(this.$store.state.team).length))
-            console.log(this.$store.state.team)
         }
     },
     created: function() {
@@ -51,6 +68,17 @@ export default {
 </script>
 
 <style>
+.stats {
+    position: relative;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color: black;
+    transition: all 0.5s ease-in-out;
+    -webkit-box-shadow: 5px 5px 50px -3px rgba(0,0,0,0.43); 
+    box-shadow: 5px 5px 50px -3px rgba(0,0,0,0.43);
+}
 .PokemonDetail {
     position: relative;
     padding: 20px;

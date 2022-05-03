@@ -20,6 +20,11 @@
 export default {
     name: "PokemonCard",
     props: ['pokemon'],
+    data() {
+        return {
+            detailedPokemon: {}
+        }
+    },
     methods: {
         selectedPokemon() {
             this.$store.dispatch('selectPokemon', this.detailedPokemon)
@@ -34,7 +39,7 @@ export default {
             }
         }
     },
-    created() {
+    created: function() {
         this.$store.dispatch('getDetails', this.pokemon.id).then(() => {
             this.detailedPokemon = this.$store.state.pokemon
         })
