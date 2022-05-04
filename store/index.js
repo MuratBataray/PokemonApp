@@ -1,5 +1,6 @@
 export const state = () => ({
     pokemons: {},
+    filter: '',
     favoritePokemons: [],
     pokemon: {
         "abilities": [{
@@ -744,6 +745,9 @@ export const mutations = {
     addDetails(state, pokemons) {
         state.pokemonEvos = pokemons
     },
+    filterPokemon(state, filter) {
+        state.filter = filter
+    }
 
 }
 export const actions = {
@@ -788,6 +792,9 @@ export const actions = {
             data.push(await this.$axios.$get(urls[index]))
         }
         commit('addDetails', data)
+    },
+    filterPokemon({ commit }, filter) {
+        commit('filterPokemon', filter)
     },
     addPokemonToTeam({ commit }, pokemon) {
         commit('addToTeam', pokemon)
