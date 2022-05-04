@@ -3,7 +3,7 @@
     <h5>STATISTIEKEN</h5>
   <div class="stats">
     <div class="row">
-        <div class="col-3" style="color: grey;">
+        <div class="col-4" style="color: grey;">
             <p>HP</p>
             <p>Attack</p>
             <p>Defense</p>
@@ -18,7 +18,7 @@
             </div>
             <p>{{getAvg}}</p>
         </div>
-        <div class="col-8 mt-1">
+        <div class="col-6 mt-1">
             <!-- Didn't use v-for here to get cool animations on progress bar -->
             <b-progress :value="pokemon.stats[0].base_stat" :max="getMax" height="5px" style="margin-bottom: 35px;margin-top: 5px;" :variant="pokemon.stats[0].base_stat < getAvg ? 'danger' : 'success'"></b-progress>
             <b-progress :value="pokemon.stats[1].base_stat" :max="getMax" height="5px" style="margin-bottom: 35px;" :variant="pokemon.stats[1].base_stat < getAvg ? 'danger' : 'success'"></b-progress>

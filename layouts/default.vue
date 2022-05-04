@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div v-if="$store.state.pokemons.length === 151" class="view row m-0">
-      <LeftPane id="left-pane" class="left-pane col-sm-4"></LeftPane>
+      <LeftPane id="left-pane" class="left-pane col-4"></LeftPane>
       <Nuxt class="my-4"/>
     </div>
     <div v-else>

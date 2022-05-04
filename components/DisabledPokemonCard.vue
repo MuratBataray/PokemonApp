@@ -1,11 +1,11 @@
 <template>
     <div class="disabledPokemonCard row" v-on:click="selectedPokemon">
-        <div class="col-sm-2 p-0 float-right"><img :src="pokemon.sprites.front_default" :alt="pokemon.name"></div>
-        <div class="col-sm-4">
+        <div class="col-2 p-0 float-right"><img :src="pokemon.sprites.front_default" :alt="pokemon.name"></div>
+        <div class="col-4">
             <p style="font-weight: bold;" class="mb-0">{{pokemon.name}}</p>
             <p class="mb-0">Nr. {{pokemon.id}}</p>
         </div>
-        <div class="col-sm-5" style="display: inline-flex; justify-content: flex-end;">
+        <div class="col-5" style="display: inline-flex; justify-content: flex-end;">
             <div class="m-0 float-right" v-for="type in pokemon.types" :key="pokemon.name + type.type.name">
                 <p class="type" :id="type.type.name">{{type.type.name}}</p>
             </div>

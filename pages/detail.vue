@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-8">
+  <div class="col-8">
     <PokemonDetail class="pokemonDetail"></PokemonDetail>
   </div>
 </template>
