@@ -1,6 +1,6 @@
 <template>
-  <div class="col-sm-8">
-    <PokemonDetail></PokemonDetail>
+  <div class="hidden-mobile col-sm-8">
+    <WelcomeCard></WelcomeCard>
   </div>
 </template>
 

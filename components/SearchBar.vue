@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-2">
+    <div class="mx-1">
         <b-form-input v-model="text" v-on:input="search" placeholder="Pokemon zoeken"></b-form-input>
     </div>
 </template>

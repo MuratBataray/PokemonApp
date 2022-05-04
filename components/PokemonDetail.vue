@@ -1,11 +1,14 @@
 <template>
     <div class="PokemonDetail" :id="$store.state.selectedPokemon.types[0].type.name">
+        <NuxtLink class="hidden-desktop" to="/" style="color:white;">
+            <font-awesome-icon icon="fa-solid fa-arrow-left" />&nbsp;Go Back
+        </NuxtLink>
         <div id="favoriteButton" class="float-right">
             <font-awesome-icon v-if="!this.$store.state.inFavorite" v-on:click="addToFavorite" :icon="['far', 'fa-heart']" size="lg"/>
             <font-awesome-icon v-if="this.$store.state.inFavorite" v-on:click="removeFromFavorite" :icon="['fa', 'fa-heart']" size="lg"/>
         </div>
         <h2>{{$store.state.selectedPokemon.name}}</h2>
-        <div class="row mx-2">
+        <div class="row mx-1">
             <div class="col-lg-5">
                 <!--<img width="250px" :src="$store.state.selectedPokemon.sprites.other['official-artwork'].front_default" alt="">-->
                 <ImageCarousel class="mb-3" :sprites="$store.state.selectedPokemon.sprites"></ImageCarousel>
