@@ -26,7 +26,7 @@
             <b-progress :value="pokemon.stats[3].base_stat" :max="getMax" height="5px" style="margin-bottom: 35px;" :variant="pokemon.stats[3].base_stat < getAvg ? 'danger' : 'success'"></b-progress>
             <b-progress :value="pokemon.stats[4].base_stat" :max="getMax" height="5px" style="margin-bottom: 35px;" :variant="pokemon.stats[4].base_stat < getAvg ? 'danger' : 'success'"></b-progress>
             <b-progress :value="pokemon.stats[5].base_stat" :max="getMax" height="5px" style="margin-bottom: 35px;" :variant="pokemon.stats[5].base_stat < getAvg ? 'danger' : 'success'"></b-progress>
-            <b-progress :value="getAvg" :max="getMax" height="5px" style="margin-bottom: 35px;" :variant="getAvg < 50 ? 'danger' : 'success'"></b-progress>
+            <b-progress :value="getAvg" :max="getMax" height="5px" style="margin-bottom: 35px;" :variant="getAvg <= 50 ? 'danger' : 'success'"></b-progress>
         </div>
     </div>
   </div>

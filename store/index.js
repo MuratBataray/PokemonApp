@@ -338,72 +338,21 @@ export const state = () => ({
             "id": 1,
             "name": "bulbasaur",
         },
-        "evolution": {
-            "baby_trigger_item": null,
+        "evolutions": {
             "chain": {
                 "evolution_details": [],
                 "evolves_to": [{
-                    "evolution_details": [{
-                        "gender": null,
-                        "held_item": null,
-                        "item": null,
-                        "known_move": null,
-                        "known_move_type": null,
-                        "location": null,
-                        "min_affection": null,
-                        "min_beauty": null,
-                        "min_happiness": null,
-                        "min_level": 16,
-                        "needs_overworld_rain": false,
-                        "party_species": null,
-                        "party_type": null,
-                        "relative_physical_stats": null,
-                        "time_of_day": "",
-                        "trade_species": null,
-                        "trigger": {
-                            "name": "level-up",
-                            "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
-                        },
-                        "turn_upside_down": false
-                    }],
                     "evolves_to": [{
-                        "evolution_details": [{
-                            "gender": null,
-                            "held_item": null,
-                            "item": null,
-                            "known_move": null,
-                            "known_move_type": null,
-                            "location": null,
-                            "min_affection": null,
-                            "min_beauty": null,
-                            "min_happiness": null,
-                            "min_level": 32,
-                            "needs_overworld_rain": false,
-                            "party_species": null,
-                            "party_type": null,
-                            "relative_physical_stats": null,
-                            "time_of_day": "",
-                            "trade_species": null,
-                            "trigger": {
-                                "name": "level-up",
-                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
-                            },
-                            "turn_upside_down": false
-                        }],
-                        "evolves_to": [],
-                        "is_baby": false,
                         "species": {
                             "name": "venusaur",
                             "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
                         }
                     }],
-                    "is_baby": false,
                     "species": {
                         "name": "ivysaur",
                         "url": "https://pokeapi.co/api/v2/pokemon-species/2/"
                     }
                 }],
-                "is_baby": false,
                 "species": {
                     "name": "bulbasaur",
                     "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
@@ -751,79 +700,7 @@ export const state = () => ({
             "id": 1,
             "name": "bulbasaur",
         },
-        "evolution": {
-            "baby_trigger_item": null,
-            "chain": {
-                "evolution_details": [],
-                "evolves_to": [{
-                    "evolution_details": [{
-                        "gender": null,
-                        "held_item": null,
-                        "item": null,
-                        "known_move": null,
-                        "known_move_type": null,
-                        "location": null,
-                        "min_affection": null,
-                        "min_beauty": null,
-                        "min_happiness": null,
-                        "min_level": 16,
-                        "needs_overworld_rain": false,
-                        "party_species": null,
-                        "party_type": null,
-                        "relative_physical_stats": null,
-                        "time_of_day": "",
-                        "trade_species": null,
-                        "trigger": {
-                            "name": "level-up",
-                            "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
-                        },
-                        "turn_upside_down": false
-                    }],
-                    "evolves_to": [{
-                        "evolution_details": [{
-                            "gender": null,
-                            "held_item": null,
-                            "item": null,
-                            "known_move": null,
-                            "known_move_type": null,
-                            "location": null,
-                            "min_affection": null,
-                            "min_beauty": null,
-                            "min_happiness": null,
-                            "min_level": 32,
-                            "needs_overworld_rain": false,
-                            "party_species": null,
-                            "party_type": null,
-                            "relative_physical_stats": null,
-                            "time_of_day": "",
-                            "trade_species": null,
-                            "trigger": {
-                                "name": "level-up",
-                                "url": "https://pokeapi.co/api/v2/evolution-trigger/1/"
-                            },
-                            "turn_upside_down": false
-                        }],
-                        "evolves_to": [],
-                        "is_baby": false,
-                        "species": {
-                            "name": "venusaur",
-                            "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
-                        }
-                    }],
-                    "is_baby": false,
-                    "species": {
-                        "name": "ivysaur",
-                        "url": "https://pokeapi.co/api/v2/pokemon-species/2/"
-                    }
-                }],
-                "is_baby": false,
-                "species": {
-                    "name": "bulbasaur",
-                    "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
-                }
-            },
-            "id": 1
-        }
+        "evolutions": [{ "id": 1, "name": "bulbasaur", "sprites": { "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" }, "types": [{ "slot": 1, "type": { "name": "grass" } }, { "slot": 2, "type": { "name": "poison" } }] }, { "id": 2, "name": "ivysaur", "sprites": { "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" }, "types": [{ "slot": 1, "type": { "name": "grass" } }, { "slot": 2, "type": { "name": "poison" } }] }, { "id": 3, "name": "venusaur", "sprites": { "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" }, "types": [{ "slot": 1, "type": { "name": "grass" } }, { "slot": 2, "type": { "name": "poison" } }] }]
     },
     inFavorite: false,
     favoriteCount: 0,
@@ -883,29 +760,26 @@ export const actions = {
     async getDetails({ commit, state }, id) {
         let data = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon/' + id)
         const species = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon-species/' + id)
-        let evolutions = await this.$axios.$get(species.evolution_chain.url)
-        let evos = [];
+        let evolutions = await this.$axios.$get(species.evolution_chain['url'])
+        data['evolutions'] = []
+        data['evolutions'].push(state.pokemons.filter(e => e.name === evolutions.chain.species.name)[0])
         if (evolutions.chain.evolves_to.length > 0) {
             for (let index = 0; index < evolutions.chain.evolves_to.length; index++) {
                 let evo = evolutions.chain.evolves_to[index]
                 if (state.pokemons.filter(e => e.name === evo.species.name).length > 0) {
-                    let evo2 = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon/' + evo.species.url.split('/')[6])
-                    evos.push(evo2)
+                    data['evolutions'].push(state.pokemons.filter(e => e.name === evo.species.name)[0])
                 }
             }
-        }
-        if (evolutions.chain.evolves_to[0].evolves_to.length > 0) {
-            for (let index = 0; index < evolutions.chain.evolves_to[0].evolves_to.length; index++) {
-                let evo = evolutions.chain.evolves_to[0].evolves_to
-                console.log(evo)
-                if (state.pokemons.filter(e => e.name === evo.species.name).length > 0) {
-                    let evo2 = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon/' + evo.species.url.split('/')[6])
-                    evos.push(evo2)
+            if (evolutions.chain.evolves_to[0].evolves_to.length > 0) {
+                for (let index = 0; index < evolutions.chain.evolves_to[0].evolves_to.length; index++) {
+                    let evo = evolutions.chain.evolves_to[0].evolves_to[index]
+                    if (state.pokemons.filter(e => e.name === evo.species.name).length > 0) {
+                        data['evolutions'].push(state.pokemons.filter(e => e.name === evo.species.name)[0])
+                    }
                 }
             }
         }
         data['species'] = species
-        data['evolutions'] = evos
         commit('initPokemonDetail', data)
     },
     async getDetailsOfSpecificUrls({ commit }, urls) {

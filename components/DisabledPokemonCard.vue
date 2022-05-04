@@ -1,5 +1,5 @@
 <template>
-    <div class="pokemonCard row" v-on:click="selectedPokemon">
+    <div class="disabledPokemonCard row" v-on:click="selectedPokemon">
         <div class="col-sm-2 p-0 float-right"><img :src="pokemon.sprites.front_default" :alt="pokemon.name"></div>
         <div class="col-sm-4">
             <p style="font-weight: bold;" class="mb-0">{{pokemon.name}}</p>
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-    name: "PokemonCard",
+    name: "DisabledPokemonCard",
     props: ['pokemon'],
     data() {
         return {
@@ -48,10 +48,10 @@ export default {
 </script>
 
 <style>
-.pokemonCard {
+.disabledPokemonCard {
     position: relative;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: rgba(245, 245, 245, 0.5);
     border-radius: 10px;
     margin-bottom: 20px;
     color: black;
@@ -59,78 +59,13 @@ export default {
     -webkit-box-shadow: 5px 5px 50px -3px rgba(0,0,0,0.43); 
     box-shadow: 5px 5px 50px -3px rgba(0,0,0,0.43);
 }
-.pokemonCard:hover {
-    background-color: #ffffff;
-    color: black;
+.disabledPokemonCard:hover {
+    background-color: rgba(245, 245, 245, 1);
     cursor: pointer;
 }
-.pokemonCard img {
+.disabledPokemonCard img {
     float: right;
     height: 50px;
     width: 50px;
-}
-.type {
-    color: white;
-    border-radius: 50px;
-    margin: 0 5px;
-    padding: 0 10px;
-    width: fit-content;
-    text-align: center;
-}
-#chevron {
-    position: absolute;
-    top: 22%;
-    right: 5%;
-}
-#grass {
-    background-color: #95C24D;
-}
-#poison {
-    background-color: #BA7EC8;
-}
-#fire {
-    background-color: #FD7D25;
-}
-#water {
-    background-color: #4592C3;
-}
-#electric {
-    background-color: #FFCF00;
-}
-#ground {
-    background-color: #D5B35B;
-}
-#fighting {
-    background-color: #A23B6C;
-}
-#psychic {
-    background-color: #F85888;
-}
-#rock {
-    background-color: #B6A136;
-}
-#ice {
-    background-color: #95C24D;
-}
-#ghost {
-    background-color: #7B62A3;
-}
-#normal {
-    background-color: #A3ACAE;
-}
-#flying {
-    background-color: #6ab2de;
-}
-#bug {
-    background-color: #6d9036;
-}
-#fairy {
-    background-color: #F8D4F3;
-}
-#dragon {
-    background-color: #8B4513;
-}
-#steel {
-    background-color: #303030;
 }
 </style>
