@@ -1,6 +1,6 @@
 <template>
     <div class="col-lg-8">
-      <TeamCard class="teamCard"></TeamCard>
+      <TeamCard></TeamCard>
     </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   .left-pane {
     display: none;
   }
-  .teamCard{
+  .Team{
     max-width: 100%;
     display: block;
     margin: 0 !important;

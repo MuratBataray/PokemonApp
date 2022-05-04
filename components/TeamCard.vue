@@ -1,8 +1,8 @@
 <template>
   <div class="Team">
-    <NuxtLink class="hidden-desktop" to="/" style="color:white;">
+      <NuxtLink class="hidden-desktop" to="/" style="color:white;">
             <font-awesome-icon icon="fa-solid fa-arrow-left" />&nbsp;Go Back
-        </NuxtLink>
+      </NuxtLink>
       <h2 class="mb-5">My Team</h2>
       <div v-for="pokemon in $store.state.team" :key="pokemon.name">
         <NuxtLink to="/detail" class="m-0 p-0">

@@ -21,7 +21,7 @@ export default {
   .addTeam {
     position: fixed;
     bottom: 5vh;
-    tansform: translateX(-50%);
+    transform: translateX(-5%);
   }
   #teamButton {
     display: flex;

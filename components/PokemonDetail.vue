@@ -21,7 +21,7 @@
             </div>
         </div>
         <div id="teamButton">
-            <div v-if="$store.state.team.includes($store.state.selectedPokemon)">
+            <div v-if="$store.state.team.filter(item => item.name === $store.state.selectedPokemon.name).length === 1">
                 <a v-on:click="removeFromTeam" class="addTeam btn btn-dark">Remove from Team</a>
             </div>
             <div v-else>

@@ -815,8 +815,9 @@ export const mutations = {
         state.favoritePokemons.push(pokemon)
     },
     removeFromFavorite(state, pokemon) {
+        console.log(pokemon)
         state.favoritePokemons = state.favoritePokemons.filter(function(item) {
-            return item !== pokemon
+            return item.name !== pokemon.name
         })
     },
     initPokemonDetail(state, pokemon) {
