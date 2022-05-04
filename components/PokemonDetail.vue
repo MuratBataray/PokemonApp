@@ -58,7 +58,7 @@ export default {
     },
     created: function() {
         this.favorite = this.$store.state.favoritePokemons.includes(this.$store.state.selectedPokemon)
-    }
+    },
 }
 
 </script>
@@ -91,5 +91,8 @@ export default {
     border-radius: 20px;
     left: 40%;
     bottom: 20px;
+}
+#favoriteButton{
+    cursor: pointer;
 }
 </style>

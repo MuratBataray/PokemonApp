@@ -1,6 +1,7 @@
 export const state = () => ({
     pokemons: {},
     filter: '',
+    sort: 'num_asc',
     favoritePokemons: [],
     pokemon: {
         "abilities": [{
@@ -339,28 +340,67 @@ export const state = () => ({
             "id": 1,
             "name": "bulbasaur",
         },
-        "evolutions": {
-            "chain": {
-                "evolution_details": [],
-                "evolves_to": [{
-                    "evolves_to": [{
-                        "species": {
-                            "name": "venusaur",
-                            "url": "https://pokeapi.co/api/v2/pokemon-species/3/"
+        "evolutions": [{
+                "id": 1,
+                "name": "bulbasaur",
+                "sprites": {
+                    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+                },
+                "types": [{
+                        "slot": 1,
+                        "type": {
+                            "name": "grass"
                         }
-                    }],
-                    "species": {
-                        "name": "ivysaur",
-                        "url": "https://pokeapi.co/api/v2/pokemon-species/2/"
+                    },
+                    {
+                        "slot": 2,
+                        "type": {
+                            "name": "poison"
+                        }
                     }
-                }],
-                "species": {
-                    "name": "bulbasaur",
-                    "url": "https://pokeapi.co/api/v2/pokemon-species/1/"
-                }
+                ]
             },
-            "id": 1
-        }
+            {
+                "id": 2,
+                "name": "ivysaur",
+                "sprites": {
+                    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+                },
+                "types": [{
+                        "slot": 1,
+                        "type": {
+                            "name": "grass"
+                        }
+                    },
+                    {
+                        "slot": 2,
+                        "type": {
+                            "name": "poison"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "venusaur",
+                "sprites": {
+                    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+                },
+                "types": [{
+                        "slot": 1,
+                        "type": {
+                            "name": "grass"
+                        }
+                    },
+                    {
+                        "slot": 2,
+                        "type": {
+                            "name": "poison"
+                        }
+                    }
+                ]
+            }
+        ]
     },
     team: [],
     pokemonEvos: [],
@@ -701,7 +741,67 @@ export const state = () => ({
             "id": 1,
             "name": "bulbasaur",
         },
-        "evolutions": [{ "id": 1, "name": "bulbasaur", "sprites": { "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" }, "types": [{ "slot": 1, "type": { "name": "grass" } }, { "slot": 2, "type": { "name": "poison" } }] }, { "id": 2, "name": "ivysaur", "sprites": { "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" }, "types": [{ "slot": 1, "type": { "name": "grass" } }, { "slot": 2, "type": { "name": "poison" } }] }, { "id": 3, "name": "venusaur", "sprites": { "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" }, "types": [{ "slot": 1, "type": { "name": "grass" } }, { "slot": 2, "type": { "name": "poison" } }] }]
+        "evolutions": [{
+                "id": 1,
+                "name": "bulbasaur",
+                "sprites": {
+                    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+                },
+                "types": [{
+                        "slot": 1,
+                        "type": {
+                            "name": "grass"
+                        }
+                    },
+                    {
+                        "slot": 2,
+                        "type": {
+                            "name": "poison"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "ivysaur",
+                "sprites": {
+                    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
+                },
+                "types": [{
+                        "slot": 1,
+                        "type": {
+                            "name": "grass"
+                        }
+                    },
+                    {
+                        "slot": 2,
+                        "type": {
+                            "name": "poison"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "venusaur",
+                "sprites": {
+                    "front_default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"
+                },
+                "types": [{
+                        "slot": 1,
+                        "type": {
+                            "name": "grass"
+                        }
+                    },
+                    {
+                        "slot": 2,
+                        "type": {
+                            "name": "poison"
+                        }
+                    }
+                ]
+            }
+        ]
     },
     inFavorite: false,
     favoriteCount: 0,
@@ -747,8 +847,10 @@ export const mutations = {
     },
     filterPokemon(state, filter) {
         state.filter = filter
+    },
+    sort(state, sort) {
+        state.sort = sort
     }
-
 }
 export const actions = {
     async getAllPokemon({ commit }) {
@@ -766,19 +868,24 @@ export const actions = {
         const species = await this.$axios.$get('https://pokeapi.co/api/v2/pokemon-species/' + id)
         let evolutions = await this.$axios.$get(species.evolution_chain['url'])
         data['evolutions'] = []
-        data['evolutions'].push(state.pokemons.filter(e => e.name === evolutions.chain.species.name)[0])
+        let filtered = Object.values(state.pokemons).filter(e => e.name === evolutions.chain.species.name)[0]
+        if (filtered) {
+            data['evolutions'].push(filtered)
+        }
         if (evolutions.chain.evolves_to.length > 0) {
             for (let index = 0; index < evolutions.chain.evolves_to.length; index++) {
                 let evo = evolutions.chain.evolves_to[index]
-                if (state.pokemons.filter(e => e.name === evo.species.name).length > 0) {
-                    data['evolutions'].push(state.pokemons.filter(e => e.name === evo.species.name)[0])
+                filtered = Object.values(state.pokemons).filter(e => e.name === evo.species.name)
+                if (filtered.length > 0) {
+                    data['evolutions'].push(filtered[0])
                 }
             }
             if (evolutions.chain.evolves_to[0].evolves_to.length > 0) {
                 for (let index = 0; index < evolutions.chain.evolves_to[0].evolves_to.length; index++) {
                     let evo = evolutions.chain.evolves_to[0].evolves_to[index]
-                    if (state.pokemons.filter(e => e.name === evo.species.name).length > 0) {
-                        data['evolutions'].push(state.pokemons.filter(e => e.name === evo.species.name)[0])
+                    filtered = Object.values(state.pokemons).filter(e => e.name === evo.species.name)
+                    if (filtered.length > 0) {
+                        data['evolutions'].push(filtered[0])
                     }
                 }
             }
@@ -813,5 +920,30 @@ export const actions = {
     },
     teamCount({ commit }, count) {
         commit('teamCount', count)
+    },
+    sort({ commit }, sort) {
+        commit('sort', sort)
+    },
+    submitSort({ commit, state }) {
+        let pokemons = []
+        switch (state.sort) {
+            case 'alf_asc':
+                console.log('alf_asc')
+                pokemons = Object.values(state.pokemons).sort((a, b) => a.name.localeCompare(b.name))
+                break;
+            case 'alf_desc':
+                pokemons = Object.values(state.pokemons)
+                    .sort((a, b) => b.name.localeCompare(a.name))
+                break;
+            case 'num_asc':
+                pokemons = Object.values(state.pokemons)
+                    .sort((a, b) => a.id - b.id)
+                break;
+            case 'num_desc':
+                pokemons = Object.values(state.pokemons)
+                    .sort((a, b) => b.id - a.id)
+                break;
+        }
+        commit('initPokemon', pokemons)
     }
 }
