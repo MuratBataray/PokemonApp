@@ -13,12 +13,8 @@
             </div>
             <div class="col-lg-7">
                 <PokemonStats :pokemon="$store.state.selectedPokemon"></PokemonStats>
-                <div class="stats">
-                    <h3>moveset</h3>
-                </div>
-                <div class="stats">
-                    <h3>evolutie</h3>
-                </div>
+                <PokemonMoves :pokemon="$store.state.selectedPokemon"></PokemonMoves>
+                <PokemonEvolutions :pokemon="$store.state.selectedPokemon"></PokemonEvolutions>
             </div>
         </div>
         <div id="teamButton">
@@ -93,48 +89,7 @@ export default {
     position: absolute;
     width: 250px;
     border-radius: 20px;
-    left: 40%
-}
-#grass {
-    background-color: #95C24D;
-}
-#poison {
-    background-color: #BA7EC8;
-}
-#fire {
-    background-color: #FD7D25;
-}
-#water {
-    background-color: #4592C3;
-}
-#electric {
-    background-color: #FFCF00;
-}
-#ground {
-    background-color: #D5B35B;
-}
-#fighting {
-    background-color: #A23B6C;
-}
-#psychic {
-    background-color: #F85888;
-}
-#rock {
-    background-color: #B6A136;
-}
-#ice {
-    background-color: #95C24D;
-}
-#ghost {
-    background-color: #7B62A3;
-}
-#normal {
-    background-color: #A3ACAE;
-}
-#flying {
-    background-color: #6ab2de;
-}
-#bug {
-    background-color: #6d9036;
+    left: 40%;
+    bottom: 20px;
 }
 </style>

@@ -27,6 +27,7 @@ export default {
     },
     methods: {
         selectedPokemon() {
+            console.log(this.detailedPokemon);
             this.$store.dispatch('selectPokemon', this.detailedPokemon)
             if (this.$store.state.favoritePokemons !== undefined) {
                 if (this.$store.state.favoritePokemons.some(e => e.name === this.detailedPokemon.name)) {
@@ -37,7 +38,7 @@ export default {
             } else {
                 this.$store.dispatch('inFavorite', false)
             }
-        }
+        },
     },
     created: function() {
         this.$store.dispatch('getDetails', this.pokemon.id).then(() => {

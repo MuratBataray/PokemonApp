@@ -1,5 +1,5 @@
 <template>
-  <div class="m-auto" style="width: 50%;">
+  <div class="m-auto">
     <Navigation></Navigation>
     <div v-if="!loading">
       <div v-for="pokemon in $store.state.pokemons" :key="pokemon.name">

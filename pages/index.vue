@@ -1,6 +1,6 @@
 <template>
   <div class="col-sm-8">
-      <PokemonDetail></PokemonDetail>
+    <PokemonDetail></PokemonDetail>
   </div>
 </template>
 

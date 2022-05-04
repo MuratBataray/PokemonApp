@@ -3,6 +3,7 @@
     <h5>INFO</h5>
   <div class="info">
     <div class="row">
+        <p class="mx-3">{{pokemon.species.flavor_text_entries[0].flavor_text}}</p>
         <div class="col-lg-5" style="color: grey;">
             <p>Type</p>
             <p>Number</p>
@@ -53,56 +54,5 @@ export default {
     transition: all 0.5s ease-in-out;
     -webkit-box-shadow: 5px 5px 50px -3px rgba(0,0,0,0.43); 
     box-shadow: 5px 5px 50px -3px rgba(0,0,0,0.43);
-}
-#grass {
-    background-color: #95C24D;
-}
-#poison {
-    background-color: #BA7EC8;
-}
-#fire {
-    background-color: #FD7D25;
-}
-#water {
-    background-color: #4592C3;
-}
-#electric {
-    background-color: #FFCF00;
-}
-#ground {
-    background-color: #D5B35B;
-}
-#fighting {
-    background-color: #A23B6C;
-}
-#psychic {
-    background-color: #F85888;
-}
-#rock {
-    background-color: #B6A136;
-}
-#ice {
-    background-color: #95C24D;
-}
-#ghost {
-    background-color: #7B62A3;
-}
-#normal {
-    background-color: #A3ACAE;
-}
-#flying {
-    background-color: #6ab2de;
-}
-#bug {
-    background-color: #6d9036;
-}
-#fairy {
-    background-color: #F8D4F3;
-}
-#dragon {
-    background-color: #8B4513;
-}
-#steel {
-    background-color: #303030;
 }
 </style>
