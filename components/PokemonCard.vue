@@ -111,7 +111,7 @@ export default {
     background-color: #B6A136;
 }
 #ice {
-    background-color: #95C24D;
+    background-color: #36e1ff;
 }
 #ghost {
     background-color: #7B62A3;
