@@ -7,7 +7,7 @@
         </div>
         <div class="col-5" style="display: inline-flex; justify-content: flex-end;">
             <div class="m-0 float-right" v-for="type in pokemon.types" :key="pokemon.name + type.type.name">
-                <p class="type" :id="type.type.name">{{type.type.name}}</p>
+                <span class="type" :id="type.type.name">{{type.type.name}}</span>
             </div>
         </div>
         <div id="float-right">
