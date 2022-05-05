@@ -13,7 +13,7 @@ export default {
     },
     methods: {
       search() {
-        this.$store.dispatch('filterPokemon', this.text)
+        this.$store.dispatch('filterPokemon', this.text.toLowerCase())
       }
     }
 }
