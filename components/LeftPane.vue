@@ -13,7 +13,7 @@
     <h2 class="mx-1">Pokedex</h2>
     <SearchBar></SearchBar>
     <Navigation></Navigation>
-    <div v-for="pokemon in Object.values(this.$store.state.pokemons).filter(e => e.name.startsWith($store.state.filter) || parseInt(e.id) === parseInt($store.state.filter))" :key="pokemon.name">
+    <div v-for="pokemon in Object.values(this.$store.state.pokemons).filter(e => e.name.startsWith($store.state.filter) || parseInt(e.id) === parseInt($store.state.filter) ||  Object.values(e.types).some(({type}) => type.name.startsWith($store.state.filter)))" :key="pokemon.name">
       <NuxtLink to="/detail" class="m-0 p-0">
         <PokemonCard class="mx-1" :pokemon="pokemon"></PokemonCard>
       </NuxtLink>
