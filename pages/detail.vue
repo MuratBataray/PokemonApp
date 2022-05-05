@@ -19,9 +19,11 @@ export default {
     flex: 0;
   }
   .addTeam {
-    position: fixed;
-    bottom: 5vh;
-    transform: translateX(-5%);
+    position:fixed !important;
+    bottom:5vw;
+    right:25%;
+    left:50%;
+    margin-left:-125px;
   }
   #teamButton {
     display: flex;
