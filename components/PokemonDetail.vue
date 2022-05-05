@@ -17,7 +17,9 @@
             <div class="col-lg-7">
                 <PokemonStats :pokemon="$store.state.selectedPokemon"></PokemonStats>
                 <PokemonMoves :pokemon="$store.state.selectedPokemon"></PokemonMoves>
-                <PokemonEvolutions :pokemon="$store.state.selectedPokemon"></PokemonEvolutions>
+                <div v-if="$store.state.selectedPokemon.evolutions.length > 1">
+                    <PokemonEvolutions :pokemon="$store.state.selectedPokemon"></PokemonEvolutions>
+                </div>
             </div>
         </div>
         <div id="teamButton">
@@ -25,7 +27,12 @@
                 <a v-on:click="removeFromTeam" class="addTeam btn btn-dark">Remove from Team</a>
             </div>
             <div v-else>
-                <a v-on:click="addToTeam" class="addTeam btn btn-dark">Add to Team</a>
+                <div v-if="$store.state.team.length === 6">
+                    <a class="addTeam btn btn-dark disabled">Team Full</a>
+                </div>
+                <div v-else>
+                    <a v-on:click="addToTeam" class="addTeam btn btn-dark">Add to Team</a>
+                </div>
             </div>
         </div>
     </div>
