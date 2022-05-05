@@ -10,7 +10,7 @@
       ></b-carousel-slide>
       <b-carousel-slide  :img-src="sprites.other['home'].front_default">
       </b-carousel-slide>
-      <b-carousel-slide style="height: 307px;" :img-src="sprites.other['dream_world'].front_default">
+      <b-carousel-slide style="aspect-ratio: 1;" :img-src="sprites.other['dream_world'].front_default">
       </b-carousel-slide>
     </b-carousel>
   </div>
