@@ -815,7 +815,6 @@ export const mutations = {
         state.favoritePokemons.push(pokemon)
     },
     removeFromFavorite(state, pokemon) {
-        console.log(pokemon)
         state.favoritePokemons = state.favoritePokemons.filter(function(item) {
             return item.name !== pokemon.name
         })
@@ -929,7 +928,6 @@ export const actions = {
         let pokemons = []
         switch (state.sort) {
             case 'alf_asc':
-                console.log('alf_asc')
                 pokemons = Object.values(state.pokemons).sort((a, b) => a.name.localeCompare(b.name))
                 break;
             case 'alf_desc':

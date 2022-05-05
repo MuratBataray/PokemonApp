@@ -7,6 +7,9 @@
             <font-awesome-icon v-if="!this.$store.state.inFavorite" v-on:click="addToFavorite" :icon="['far', 'fa-heart']" size="lg"/>
             <font-awesome-icon v-if="this.$store.state.inFavorite" v-on:click="removeFromFavorite" :icon="['fa', 'fa-heart']" size="lg"/>
         </div>
+        <a v-on:click="shared" :action="'pokedex://details/' + $store.state.selectedPokemon.name" style="color:white; cursor:pointer;" id="shareButton" class="float-right mr-3">
+            <font-awesome-icon icon="fa-solid fa-share" size="lg"/>
+        </a>
         <h2>{{$store.state.selectedPokemon.name}}</h2>
         <div class="row mx-1">
             <div class="col-lg-5">
@@ -64,6 +67,15 @@ export default {
         removeFromTeam() {
             this.$store.dispatch('removePokemonFromTeam', this.$store.state.selectedPokemon)
             this.$store.dispatch('teamCount',(Object.keys(this.$store.state.team).length))
+        },
+        shared() {
+            navigator.clipboard.writeText('https://pokeapi.co/api/v2/pokemon/' + this.$store.state.selectedPokemon.id);
+            this.$bvToast.toast(`Copied url to clipboard`, {
+                toaster: 'b-toaster-bottom-right',
+                autoHideDelay: 2000,
+                noHoverPause: true,
+                noCloseButton: true
+            })
         }
     },
     created: function() {
