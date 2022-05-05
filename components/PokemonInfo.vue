@@ -4,7 +4,7 @@
   <div class="info">
     <div class="row">
         <p class="mx-3">{{pokemon.species.flavor_text_entries[0].flavor_text}}</p>
-        <div class="col-5" style="color: grey;">
+        <div class="col-4" style="color: grey;">
             <p>Type</p>
             <p>Number</p>
             <p>Weight</p>
@@ -20,15 +20,8 @@
             <p>{{pokemon.id}}</p>
             <p>{{pokemon.weight / 10}}kg</p>
             <p>{{pokemon.height / 10}}m</p>
-            <div style="display: inline-flex;">
-                <div v-for="(ability, index) in pokemon.abilities" :key="pokemon.name + ability.ability.name">
-                    <div v-if="index === 0">
-                        <p :id="ability.ability.name">{{ability.ability.name}}&nbsp;</p>
-                    </div>
-                    <div v-else>
-                        <p :id="ability.ability.name">/ {{ability.ability.name}}</p>
-                    </div>
-                </div>
+            <div v-for="ability in pokemon.abilities" :key="pokemon.name + ability.ability.name">
+                    <p class="mb-1" :id="ability.ability.name">{{ability.ability.name}}</p>
             </div>
         </div>
     </div>
