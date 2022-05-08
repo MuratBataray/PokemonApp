@@ -854,7 +854,7 @@ export const mutations = {
 }
 export const actions = {
     async getAllPokemon({ commit }) {
-        const data = await this.$axios.$get('https://stoplight.io/mocks/appwise-be/pokemon/32428517/pokemon')
+        const data = await this.$axios.$get('https://stoplight.io/mocks/appwise-be/pokemon/57519009/pokemon')
         commit('initPokemon', data)
     },
     selectPokemon({ commit }, pokemon) {
